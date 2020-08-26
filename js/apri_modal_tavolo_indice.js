@@ -3,21 +3,16 @@ var indice;
 var waiting=0;
 $(document).ready(function(){
 	loadTablesToSchedule();
-	loadTablesInProduction();
+	//loadTablesInProduction();
 
 	setInterval(loadTablesToSchedule, 5000);
-    setInterval(loadTablesInProduction, 5000);
+    //setInterval(loadTablesInProduction, 5000);
 	$('#lista-tavoli').on('click', '.schedula', function(){
 		tavolo = $(this).data('tavolo');
 		indice = $(this).data('indice');
 		openModal(tavolo, indice);
 	});
-	$('#lista-tavoli-produzione').on('click', '.produci', function(){
-		tavolo = $(this).data('tavolo');
-		indice = $(this).data('indice');
-		var idprog = $(this).data('idprg');
-		openModalProduci(idprog);
-	});
+	
 });
 
 var tavoliSchedulati = new Array();
@@ -93,35 +88,6 @@ function showPortateInModal(portate){
     });
 }
 
-function showPortateInModalProduzione(portate){
-	$('#modal-prod-div').empty();
-	var arrays = _.groupBy(portate, 'filter');
-	$.each(arrays, function(index, arr) {
-	//$('#modal-gest-table').append('<tr><td><input type="checkbox"/></td><td>'+value['nome_portata']+'</td></tr>');
-		$('#modal-prod-div').append('<h4>Tavolo '+index+'</h4>');
-		var text='<table class="table table-sm table-striped" >'
-          +'<thead><tr><th scope="col">Select</th>'
-          				+'<th scope="col">Portata</th>'
-          				+'<th scope="col">Quantità</th>'
-          				+'</tr></thead><tbody>';
-		
-		$.each(arr, function(i, value){
-			text+='<tr><td><input type="checkbox"/></td><td>'
-					+ value.portata
-					+'</td>'
-					+'<td class="d-none">'+value.tavolo+'</td>'
-					+'<td class="d-none">'+value.indice+'</td>'
-					+'<td class="d-none">'+value.idprg+'</td>'
-					+'<td data-quant="'+value.nr+'"><select class="custom-select custom-select-sm" id="quant-portata-prod">'
-					+generateSelectOptions(value.nr)
-					+'</select></td>'
-					+'</tr>';
-		});
-          
-            
-    	$('#modal-prod-div').append(text+'</tbody></table>');
-    });
-}
 
 
 function generateSelectOptions(index){
@@ -254,6 +220,7 @@ function navProduction(){
 	divSched.style.display = "none";
 	divProg.style.display = "block";
 	divHistory.style.display = "none";
+	loadDelivered();
 };
 
 function navHistory(){
@@ -264,6 +231,32 @@ function navHistory(){
 	divProg.style.display = "none";
 	divHistory.style.display = "block";
 	loadHistoryProducted();
+};
+
+function loadDelivered(){
+	$('#delivered-table tbody').empty();
+	$.ajax({
+        type: 'GET',
+        url: "ajax/ottieni_piatti_evasi.ajax.php",
+        dataType: "json",
+        timeout: 20000,
+        beforeSend: function(){
+        },
+
+        success: function(result){
+        	$.each(result, function(i, value){
+				var text='<tr>'
+					+'<td>'+value.portata+'</td>'
+					+'<td>'+value.quantita+'</td>'
+					+'</tr>';
+					$('#delivered-table  tbody').append(text);
+			});
+            	
+        },
+        error: function() {
+			alert('Errore nella ricezione del dato');
+		}
+    });
 };
 
 function loadHistoryProducted(){

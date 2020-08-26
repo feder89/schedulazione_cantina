@@ -2,7 +2,7 @@
   require_once '../include/core.inc.php';
   $link = connectToDb();
   $query="SELECT DISTINCT tavolo, indice FROM programmazioneordini 
-          WHERE stato=1 and categoria IN ('pane e coperto','bevanda')
+          WHERE stato=2 and categoria IN ('pane e coperto','bevanda')
           GROUP BY tavolo, indice";
   $tavoli= array();
   if ($result = mysqli_query($link, $query)) {
