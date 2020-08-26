@@ -7,7 +7,7 @@
 		$indice=$_POST['indice'];
 		$query="SELECT *,count(*) as quant 
 		FROM programmazioneordini 
-		WHERE tavolo=$tavolo AND indice=$indice AND stato < 2 and categoria IN ('pane e coperto','bevanda')
+		WHERE tavolo=$tavolo AND indice=$indice AND stato <3 and categoria IN ('pane e coperto','bevanda')
 		GROUP BY portata
 		ORDER BY FIELD(categoria, 'pane e coperto','bevanda')";
 
