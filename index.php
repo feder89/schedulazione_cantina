@@ -48,6 +48,11 @@
         <div class="row text-center" id="lista-tavoli">
         </div>
       </div>
+	  <div class="col-lg-2 mt-3">
+        <select class="custom-select" id="table-multiselect" multiple>          
+        </select>
+        <button type="button" class="btn btn-success mt-3" id="btn-schedula-tavoli">Schedula Tavoli</button>
+      </div>
     </div>
   </div>
   <div class="container-fluid" id="div-prog" style="display: none;">
