@@ -3,7 +3,7 @@
 	$link=connectToDb();
 	$portate=array();
 	$query="SELECT portata,COUNT(portata) AS nr FROM programmazioneordini 
-			WHERE stato=3 and categoria IN ('pane e coperto','bevanda')
+			WHERE stato=3 and categoria IN ('bevanda')
 			GROUP BY portata
 			ORDER BY portata";			
 

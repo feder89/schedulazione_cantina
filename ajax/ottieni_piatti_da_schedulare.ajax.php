@@ -7,9 +7,9 @@
 		$indice=$_POST['indice'];
 		$query="SELECT *,count(*) as quant 
 		FROM programmazioneordini 
-		WHERE tavolo=$tavolo AND indice=$indice AND stato <3 and categoria IN ('pane e coperto','bevanda')
+		WHERE tavolo=$tavolo AND indice=$indice AND stato <3 and categoria IN ('bevanda')
 		GROUP BY portata
-		ORDER BY FIELD(categoria, 'pane e coperto','bevanda')";
+		ORDER BY FIELD(categoria, 'bevanda')";
 
 		$result = mysqli_query($link, $query) or die("#error#".mysqli_error($link));
 	    while ($row = mysqli_fetch_assoc($result)) {

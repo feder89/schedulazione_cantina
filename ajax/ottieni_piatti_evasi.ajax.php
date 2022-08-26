@@ -5,7 +5,7 @@
 	$query="SELECT *,COUNT(id) AS nr FROM programmazioneordini 
 			WHERE stato=3 and categoria IN ('pane e coperto','bevanda')
 			GROUP BY portata, tavolo ,indice, idprogrammazione
-			ORDER BY idprogrammazione DESC, tavolo, portata,FIELD(categoria, 'pane e coperto','bevanda')";			
+			ORDER BY idprogrammazione DESC, tavolo, portata,FIELD(categoria,'bevanda')";			
 
 	$result = mysqli_query($link, $query) or die("#error#".mysqli_error($link));
     while ($row = mysqli_fetch_assoc($result)) {

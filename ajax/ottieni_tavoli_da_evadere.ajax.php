@@ -2,7 +2,7 @@
   require_once '../include/core.inc.php';
   $link = connectToDb();
   $query="SELECT tavolo, indice, idprogrammazione FROM programmazioneordini 
-          WHERE stato=2 and categoria IN ('pane e coperto','bevanda')
+          WHERE stato=2 and categoria IN ('bevanda')
           GROUP BY tavolo, indice, idprogrammazione
 		  ORDER BY idprogrammazione";
   $tavoli= array();

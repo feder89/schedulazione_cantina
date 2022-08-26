@@ -237,7 +237,7 @@ function loadDelivered(){
 	$('#delivered-table tbody').empty();
 	$.ajax({
         type: 'GET',
-        url: "ajax/ottieni_piatti_evasi.ajax.php",
+        url: "ajax/ottieni_piatti_consegati.ajax.php",
         dataType: "json",
         timeout: 20000,
         beforeSend: function(){
