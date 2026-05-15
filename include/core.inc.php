@@ -1,6 +1,6 @@
 <?php
 function connectToDb(){
-	$link = mysqli_connect("127.0.0.1", "root", "furente", "gestionale_sett2025");
+	$link = mysqli_connect("127.0.0.1", "root", "furente", "gestionale_giu2026");
 
 	if (!$link) {
 	    echo "Error: Unable to connect to MySQL." . PHP_EOL;
